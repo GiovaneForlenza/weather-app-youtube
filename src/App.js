@@ -1,8 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-
+import getFormattedWeatherData from "./services/weatherService";
 
 function App() {
+  const fetchWeather = async () => {
+    const data = await getFormattedWeatherData({ q: "london " });
+    console.log(data);
+  };
+  fetchWeather();
+
 
   return (
     <div className="App">
