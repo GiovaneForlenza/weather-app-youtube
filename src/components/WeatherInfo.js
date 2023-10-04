@@ -3,7 +3,7 @@ import { BsSunrise, BsSunset, BsThermometerHigh } from "react-icons/bs";
 import { FiDroplet, FiWind } from "react-icons/fi";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
-function WeatherInfo({ text, icon, data }) {
+function WeatherInfo({ text, icon, data, symbol }) {
   return (
     <div className="flex items-center justify-between text-sm">
       <div className="mr-1">
@@ -24,7 +24,7 @@ function WeatherInfo({ text, icon, data }) {
         )}
       </div>
       <div className="mr-1">{text}</div>
-      <span className="font-semibold">{data}</span>
+      <span className="font-semibold">{data}{symbol}</span>
     </div>
   );
 }

@@ -70,7 +70,7 @@ const formatForecastWeather = (data) => {
       //Formats the hours e.g.: '01:00PM'
       title: formatToLocalTime(h.dt, timezone, "hh:mm a"),
       //Gets the hourly avg for the hour
-      temp: h.temp.day,
+      temp: h.temp,
       icon: h.weather[0].icon,
     };
   });

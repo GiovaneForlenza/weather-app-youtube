@@ -1,18 +1,14 @@
 import React from "react";
+import { iconUrlFromCode } from "../services/weatherService";
 
-function SingleForecast() {
+function SingleForecast({ data }) {
   return (
     <div className=" w-[70px] flex flex-col items-center justify-start text-sm">
-      <div className=" ">12:00 PM</div>
+      <div className=" ">{data.title}</div>
       <div className=" p-0">
-        <img
-          src="https://openweathermap.org/img/wn/10d@2x.png"
-          alt=""
-          className=" w-12"
-        />
-        
+        <img src={iconUrlFromCode(data.icon)} alt="" className=" w-12" />
       </div>
-      <div className="font-semibold">59º</div>
+      <div className="font-semibold">{data.temp.toFixed()}º</div>
     </div>
   );
 }
