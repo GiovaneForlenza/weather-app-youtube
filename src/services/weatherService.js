@@ -7,9 +7,13 @@ const API_KEY = "e37ac004829824b7fe9c4723fed7bd07";
 //infoType defines if it's Weather (current weather), hourly or daily weather
 //searchParams define what are que queries to search (country name, lat, lon, units, ...)
 const getWeatherData = (infoType, searchParams) => {
-  const url = new URL(BASE_URL + infoType);
-  url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
-  return fetch(url).then((res) => res.json());
+  try {
+    const url = new URL(BASE_URL + infoType);
+    url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
+    return fetch(url).then((res) => res.json());
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /*

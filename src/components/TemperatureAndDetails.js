@@ -1,7 +1,7 @@
 import React from "react";
 
 import WeatherInfo from "./WeatherInfo";
-import { iconUrlFromCode } from "../services/weatherService";
+import { formatToLocalTime, iconUrlFromCode } from "../services/weatherService";
 function TemperatureAndDetails({ weather }) {
   return (
     <div>
@@ -42,10 +42,13 @@ function TemperatureAndDetails({ weather }) {
         <WeatherInfo
           text="Rise:"
           icon="rise"
-          // TODO(Gionave): Fix the Sunrise/set time
-          data={weather.sunrise.toFixed()}
+          data={formatToLocalTime(weather.sunrise, weather.timezone, "hh:mm a")}
         />
-        <WeatherInfo text="Set:" icon="set" data={weather.sunset.toFixed()} />
+        <WeatherInfo
+          text="Set:"
+          icon="set"
+          data={formatToLocalTime(weather.sunset, weather.timezone, "hh:mm a")}
+        />
         <WeatherInfo
           text="High:"
           icon="high"
