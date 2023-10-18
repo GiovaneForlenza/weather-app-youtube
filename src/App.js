@@ -30,11 +30,11 @@ export default function App() {
     clearSearch();
   }, [query, units]);
   return (
-    <main className="border-2 h-screen flex items-center justify-center bg-cyan-50	">
+    <main className=" h-screen flex items-center justify-center bg-cyan-50	">
       {/* Main container */}
-      <div className="w-[550px] h-[680px] bg-gradient-to-br from-blue-700 to-blue-800  py-5">
+      <div className="min-w-xl max-w-2xl h-2xl bg-gradient-to-br from-blue-700 to-blue-800  py-5">
         {/* Content container */}
-        <div className=" h-full mx-12">
+        <div className=" h-full px-2 sm:px-12 w-fit">
           <CitiesQuickSearch setQuery={setQuery} />
           <SearchBarAndQueryUpdate
             setQuery={setQuery}

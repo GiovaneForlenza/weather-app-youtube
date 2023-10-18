@@ -5,7 +5,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 function WeatherInfo({ text, icon, data, symbol }) {
   return (
-    <div className="flex items-center justify-between text-sm">
+    <div className="flex items-center text-sm mx-2 flex-wrap">
       <div className="mr-1">
         {icon === "term" ? (
           <BsThermometerHigh />
@@ -24,7 +24,10 @@ function WeatherInfo({ text, icon, data, symbol }) {
         )}
       </div>
       <div className="mr-1">{text}</div>
-      <span className="font-semibold">{data}{symbol}</span>
+      <span className="font-semibold">
+        {data}
+        {symbol}
+      </span>
     </div>
   );
 }

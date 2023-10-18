@@ -38,7 +38,7 @@ function TemperatureAndDetails({ weather }) {
         </div>
       </div>
       {/* Sun rise/set, min/max temp container */}
-      <div className="mt-4 text-white flex items-center justify-between">
+      <div className="mt-4 text-white flex items-center justify-between flex-row">
         <WeatherInfo
           text="Rise:"
           icon="rise"
