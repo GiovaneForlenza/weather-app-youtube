@@ -11,7 +11,7 @@ import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import ReactLoading from "react-loading";
 
 export default function App() {
-  const [query, setQuery] = useState({ q: "sao paulo" });
+  const [query, setQuery] = useState({ q: "london" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
   const [search, setSearch] = useState("");

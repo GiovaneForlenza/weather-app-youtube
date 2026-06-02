@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
-const API_KEY = "e37ac004829824b7fe9c4723fed7bd07";
+const API_KEY = "e01bb7581fb5f7b94c90f3b6bdebb3a8";
 
 //Created the URL to search
 //infoType defines if it's Weather (current weather), hourly or daily weather
@@ -10,7 +10,11 @@ const getWeatherData = (infoType, searchParams) => {
   try {
     const url = new URL(BASE_URL + infoType);
     url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
-    return fetch(url).then((res) => res.json());
+    // console.log(url);
+    // return true;
+    return fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=e01bb7581fb5f7b94c90f3b6bdebb3a8"
+    ).then((res) => res.json());
   } catch (error) {
     console.log(error);
   }
@@ -56,6 +60,8 @@ const formatCurrentWeather = (data) => {
   Extracts all the daily and hourly info from the json response and returns it as an object
 */
 const formatForecastWeather = (data) => {
+  console.log(data);
+  
   let { timezone, daily, hourly } = data;
   //Gets the first 5 days to be used
   daily = daily.slice(1, 6).map((d) => {
@@ -95,24 +101,27 @@ const formatToLocalTime = (
 */
 const getFormattedWeatherData = async (searchParams) => {
   //Gets the info to be used for the current weather
-  const formattedCurrentWeather = await getWeatherData(
-    "weather",
-    searchParams
-    //Formats the current weather data
-  ).then(formatCurrentWeather);
+  try {
+    const formattedCurrentWeather = await getWeatherData(
+      "weather",
+      searchParams
+      //Formats the current weather data
+    ).then(formatCurrentWeather);
 
-  const { lat, lon } = formattedCurrentWeather;
+    const { lat, lon } = formattedCurrentWeather;
 
-  //Gets the info to be used in the forecast (hourly and daily)
-  const formattedForecastWeather = await getWeatherData("onecall", {
-    lat,
-    lon,
-    exclude: "current,minutely,alerts",
-    units: searchParams.units,
-    //Formats the forecast weather
-  }).then(formatForecastWeather);
-
-  return { ...formattedCurrentWeather, ...formattedForecastWeather };
+    //Gets the info to be used in the forecast (hourly and daily)
+    const formattedForecastWeather = await getWeatherData("onecall", {
+      lat,
+      lon,
+      exclude: "current,minutely,alerts",
+      units: searchParams.units,
+      //Formats the forecast weather
+    }).then(formatForecastWeather);
+    return { ...formattedCurrentWeather, ...formattedForecastWeather };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const iconUrlFromCode = (code) =>
